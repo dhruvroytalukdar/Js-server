@@ -1,0 +1,26 @@
+// app.get("/api/hello", async (req, res) => {
+//   const posts = await prisma.user.findMany({
+//     include: {
+//       posts: true,
+//       profile: true,
+//     },
+//   });
+//   res.json(posts);
+// });
+
+// app.post("/api/hello", async (req, res) => {
+//   console.log("Req ", req.body);
+//   const { name, email } = req.body;
+//   const post = await prisma.user.create({
+//     data: {
+//       name,
+//       email,
+//       posts: {
+//         create: {
+//           title: "My first post",
+//         },
+//       },
+//     },
+//   });
+//   res.json({ message: "success", data: post });
+// });
