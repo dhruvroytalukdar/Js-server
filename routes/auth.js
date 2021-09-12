@@ -51,6 +51,7 @@ router.post("/login", async (req, res) => {
       res.status(202).json({ accessToken: token, user });
     }
   } catch (err) {
+    console.error(err);
     res.status(400).json({ message: "Bad Request" });
   }
 });
