@@ -4,6 +4,7 @@ const checkAuth = require("../middlewares/checkAuth");
 
 const prisma = new PrismaClient();
 
+// Create a message
 router.post("/create", checkAuth, async (req, res) => {
   const email = req.body.email;
   const content = req.body.content;
@@ -65,7 +66,7 @@ router.post("/create", checkAuth, async (req, res) => {
         recieverId: reciever.id,
       },
     });
-    res.status(203).json({ message: "Message sent" });
+    res.status(200).json({ message: "Message sent" });
   } catch (error) {
     res.status(404).json({ message: "Message not sent" });
   }
@@ -79,7 +80,7 @@ router.delete("/delete", checkAuth, async (req, res) => {
         id: req.body.id,
       },
     });
-    res.status(202).json({ message: "Deleted successfully" });
+    res.status(200).json({ message: "Deleted successfully" });
   } catch (error) {
     res.status(403).json({ message: "Error occured" });
   }
@@ -87,9 +88,9 @@ router.delete("/delete", checkAuth, async (req, res) => {
 
 // Get all messages between user and others
 router.get("/get", checkAuth, async (req, res) => {
-  let m =
+  let messages =
     await prisma.$queryRaw`SELECT * FROM "Message" WHERE "recieverId"=${req.body.id} AND "senderId"=${req.user.id} OR "recieverId"=${req.user.id} AND "senderId"=${req.body.id} ORDER BY "sent";`;
-  res.status(202).send({ message: "success", data: m });
+  res.status(200).send({ message: "success", data: messages });
 });
 
 module.exports = router;
