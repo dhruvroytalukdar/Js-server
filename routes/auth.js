@@ -9,13 +9,14 @@ const prisma = new PrismaClient();
 //Register a user
 router.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
-
+  const photoURL = `https://avatars.dicebear.com/api/initials/${name}.svg`;
   try {
     const data = await prisma.user.create({
       data: {
         name,
         email,
         password,
+        photoURL,
       },
     });
     res.status(201).json(data);

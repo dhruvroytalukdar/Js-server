@@ -16,7 +16,7 @@ model User {
   name         String
   email        String    @unique
   password     String    @default("password")
-  photoURL     String?   @default("http://localhost:3000/images/user.png")
+  photoURL     String
   senderMssg   Message[] @relation("senderRef")
   recieverMssg Message[] @relation("recieverRef")
   friends      String[]
