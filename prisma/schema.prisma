@@ -30,6 +30,7 @@ model Message {
   senderId   Int
   reciever   User     @relation("recieverRef", fields: [recieverId], references: [id])
   recieverId Int
+  seen       Boolean  @default(false)
 }
 
 generator client {
